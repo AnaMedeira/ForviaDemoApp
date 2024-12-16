@@ -1,6 +1,7 @@
 [versions]
-agp = "8.7.2"
+agp = "8.7.3"
 kotlin = "2.0.0"
+
 #Android APK configuration
 android-compileSdk = "35"
 android-minSdk = "28"
@@ -15,9 +16,16 @@ material = "1.12.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
+
 navigationCompose = "2.8.5"
 daggerHilt = "2.51.1"
 composeHilt = "1.2.0"
+kotlinxSerializationVersion = "1.8.0-RC"
+retrofitVersion = "2.11.0"
+okHttpVersion = "4.12.0"
+junitKtx = "1.2.1"
+mockWebServerVersion = "4.11.0"
+runner = "1.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -37,6 +45,13 @@ dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compi
 dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt" }
 navigation-hilt = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "composeHilt" }
 
+#Network
+serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationVersion" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofitVersion" }
+retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-kotlinx-serialization", version.ref = "retrofitVersion" }
+okHttp = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okHttpVersion" }
+
+
 #Test
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -44,10 +59,19 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 
+dagger-hilt-compiler-test = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "daggerHilt" }
+dagger-hilt-android-test = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "daggerHilt" }
+androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
+mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver", version.ref = "mockWebServerVersion" }
+androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
+
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt" }
 kotlin-kapt = { id = "kotlin-kapt" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 

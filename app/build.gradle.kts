@@ -61,6 +61,7 @@ dependencies {
     implementation(libs.androidx.material3)
     //Navigation
     implementation(libs.navigation.compose)
+    implementation(project(":domain"))
     //Dependency injection dagger - hilt
 
     //implementation(libs.dagger.hilt.android)
