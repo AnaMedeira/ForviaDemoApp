@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.forvia.domain"
-    compileSdk = 34
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "com.forvia.domain"
-        minSdk = 28
-        targetSdk = 34
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
 
@@ -35,12 +35,3 @@ android {
     }
 }
 
-dependencies {
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-}
