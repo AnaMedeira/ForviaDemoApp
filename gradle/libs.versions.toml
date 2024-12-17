@@ -31,6 +31,8 @@ roomVersion = "2.6.1"
 kspVersion = "2.1.0-1.0.29"
 adapters = "3.2.0-alpha11"
 runnerVersion = "1.6.2"
+serialization = "1.7.3"
+coilVersion = "2.4.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -56,12 +58,16 @@ retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = 
 retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-kotlinx-serialization", version.ref = "retrofitVersion" }
 okHttp = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okHttpVersion" }
 
+#Serialization
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 #Persistence Room DB
 android-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomVersion" }
 android-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
 android-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion" }
 android-room-test = { group = "androidx.room", name = "room-testing", version.ref = "roomVersion" }
 
+#Image loading Coil
+coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilVersion" }
 
 #Test
 junit = { group = "junit", name = "junit", version.ref = "junit" }
