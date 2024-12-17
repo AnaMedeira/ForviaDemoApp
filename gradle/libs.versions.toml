@@ -1,6 +1,6 @@
 [versions]
 agp = "8.7.3"
-kotlin = "2.0.0"
+kotlin = "2.1.0"
 
 #Android APK configuration
 android-compileSdk = "35"
@@ -18,7 +18,7 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 
 navigationCompose = "2.8.5"
-daggerHilt = "2.51.1"
+daggerHilt = "2.53"
 composeHilt = "1.2.0"
 kotlinxSerializationVersion = "1.8.0-RC"
 retrofitVersion = "2.11.0"
@@ -26,6 +26,11 @@ okHttpVersion = "4.12.0"
 junitKtx = "1.2.1"
 mockWebServerVersion = "4.11.0"
 runner = "1.6.1"
+coroutines = "1.9.0"
+roomVersion = "2.6.1"
+kspVersion = "2.1.0-1.0.29"
+adapters = "3.2.0-alpha11"
+runnerVersion = "1.6.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -51,6 +56,12 @@ retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = 
 retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-kotlinx-serialization", version.ref = "retrofitVersion" }
 okHttp = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okHttpVersion" }
 
+#Persistence Room DB
+android-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomVersion" }
+android-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
+android-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion" }
+android-room-test = { group = "androidx.room", name = "room-testing", version.ref = "roomVersion" }
+
 
 #Test
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -63,7 +74,12 @@ dagger-hilt-compiler-test = { group = "com.google.dagger", name = "hilt-compiler
 dagger-hilt-android-test = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "daggerHilt" }
 androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
 mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver", version.ref = "mockWebServerVersion" }
-androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
+android-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
+android-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+android-coroutines-core-jvm = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core-jvm", version.ref = "coroutines" }
+androidx-adapters = { group = "androidx.databinding", name = "adapters", version.ref = "adapters" }
+runner = { group = "androidx.test", name = "runner", version.ref = "runnerVersion" }
+
 
 
 [plugins]
@@ -71,7 +87,8 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt" }
-kotlin-kapt = { id = "kotlin-kapt" }
+kotlin-ksp = { id = "com.google.devtools.ksp" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-ksp-devtools = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
 

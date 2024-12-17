@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.dagger.hilt)
-    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlin.ksp)
 }
 
 android {
@@ -61,11 +61,10 @@ dependencies {
     implementation(libs.androidx.material3)
     //Navigation
     implementation(libs.navigation.compose)
-    implementation(project(":domain"))
+    implementation(project(":data"))
     //Dependency injection dagger - hilt
 
-    //implementation(libs.dagger.hilt.android)
-    kapt(libs.dagger.hilt.compiler)
+    ksp(libs.dagger.hilt.compiler)
     implementation(libs.navigation.hilt)
     implementation(libs.dagger.hilt.android)
 
@@ -76,8 +75,4 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-}
-
-kapt {
-    correctErrorTypes = true
 }

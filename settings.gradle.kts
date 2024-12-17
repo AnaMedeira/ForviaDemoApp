@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ForviaDemoApp"
 include(":app")
-include(":domain")
+include(":data")
