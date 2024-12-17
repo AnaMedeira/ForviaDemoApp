@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.kotlin.ksp)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -63,10 +64,13 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(project(":data"))
     //Dependency injection dagger - hilt
-
     ksp(libs.dagger.hilt.compiler)
     implementation(libs.navigation.hilt)
     implementation(libs.dagger.hilt.android)
+    //Serialization
+    implementation(libs.kotlinx.serialization.json)
+    //Coil
+    implementation(libs.coil)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
