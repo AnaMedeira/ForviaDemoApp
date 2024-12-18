@@ -1,13 +1,16 @@
 package com.forvia.domain.di
 
 import android.app.Application
+import android.content.Context
 import androidx.room.Room
 import com.forvia.domain.api.AppApi
 import com.forvia.domain.database.AppDao
 import com.forvia.domain.database.AppDatabase
+import com.forvia.domain.utils.NetworkUtils
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -51,5 +54,10 @@ object DomainModule {
         return appDatabase.AppDao()
     }
 
+    @Provides
+    @Singleton
+    fun provideNetworkUtils(@ApplicationContext context: Context): NetworkUtils {
+        return NetworkUtils(context)
+    }
 
 }

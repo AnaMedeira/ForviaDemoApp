@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.forvia.demoapp.presentation.home.models.HomeOneTimeEvent
 import com.forvia.demoapp.presentation.home.models.HomeUIEvent
 import com.forvia.demoapp.presentation.home.models.HomeUiState
-import com.forvia.domain.useCase.GetRemoteAppsUseCase
+import com.forvia.domain.useCase.GetAppsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    var getAppsUseCase: GetRemoteAppsUseCase
+    var getAppsUseCase: GetAppsUseCase
 ) : ViewModel() {
 
 
@@ -30,7 +30,7 @@ class HomeViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            _uiStateFlow.value = HomeUiState(appList = getAppsUseCase.invoke())
+            _uiStateFlow.value = HomeUiState(appList = getAppsUseCase.getApps())
         }
     }
 

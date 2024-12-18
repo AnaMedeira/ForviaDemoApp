@@ -4,14 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import com.forvia.demoapp.navigation.ForviaDemoNavGraph
 import com.forvia.demoapp.ui.theme.ForviaDemoAppTheme
 import com.forvia.domain.useCase.GetLocalAppsUseCase
 import com.forvia.domain.useCase.SaveLocalAppsUseCase
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -26,16 +24,6 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        lifecycleScope.launch {
-            //val apps = getAppsUseCase.invoke()
-            //apps.forEach { println("remote:  " + it) }
-            //saveLocalAppsUseCase(apps)
-
-            val apps2 = getLocalAppsUseCase.invoke()
-            apps2.forEach { println("local:  " + it) }
-
-        }
         enableEdgeToEdge()
         setContent {
             ForviaDemoAppTheme {
