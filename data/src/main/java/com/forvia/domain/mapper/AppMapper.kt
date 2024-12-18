@@ -5,13 +5,13 @@ import com.forvia.domain.entities.List
 import com.forvia.domain.model.AppItem
 
 fun List.toDomain(): AppItem = AppItem(
-    id = id ?: 0,
+    id = id,
     name = name,
     packageName = packageName,
     appIcon = icon,
     appGraphic = graphic,
     versionName = vername,
-    downloads = downloads?.toLong() ?: 0L,
+    downloads = downloads,
     updated = updated
 )
 

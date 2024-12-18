@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.ksp)
+    alias(libs.plugins.parcelize) //To pass complex data between screens
 }
 
 android {

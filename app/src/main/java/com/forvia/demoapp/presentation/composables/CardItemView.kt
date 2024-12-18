@@ -14,9 +14,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import com.forvia.demoapp.R
 import com.forvia.demoapp.ui.theme.ForviaDemoAppTheme
 import com.forvia.demoapp.util.MultiDevicePreview
 import com.forvia.domain.model.AppItem
@@ -49,21 +51,20 @@ fun CardItemView(
                 contentScale = ContentScale.Crop
             )
 
+            Spacer(modifier = Modifier.height(12.dp))
             // Title and subtitle
-            Column(modifier = Modifier.fillMaxWidth()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth(),
+            ) {
                 Text(
-                    text = appItem.name ?: "",
+                    text = appItem.name,
                     style = MaterialTheme.typography.titleMedium,
-                    maxLines = 1,
+                    maxLines = 3,
                     overflow = TextOverflow.Ellipsis
                 )
                 Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = appItem.packageName ?: "",
-                    style = MaterialTheme.typography.bodySmall,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis
-                )
+                DetailsLabels(stringResource(R.string.version_label), appItem.versionName)
             }
         }
     }
@@ -79,7 +80,7 @@ fun PreviewCardListScreen() {
         "",
         "",
         "",
-        1000L,
+        1000,
         ""
     )
     ForviaDemoAppTheme {

@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">ForviaDemoApp</string>
+    <string name="download">Download</string>
+    <string name="back_acc">Back</string>
+    <string name="package_name_label">Package Name</string>
+    <string name="version_label">Version</string>
+    <string name="last_update_label">Last Update</string>
+    <string name="downloads_label">Download</string>
+    <string name="downloads_dialog_error_title">Be aware&#8230;</string>
+    <string name="downloads_dialog_error_body">Download functionality is not available in demo mode!!</string>
+    <string name="downloads_dialog_error_btn">Close</string>
+
 </resources>

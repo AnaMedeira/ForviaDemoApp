@@ -1,5 +1,6 @@
 package com.forvia.demoapp.presentation.home
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -42,6 +43,7 @@ data object HomeScreen
 
 fun NavGraphBuilder.homeScreen(navController: NavController) {
     composable<HomeScreen> {
+        Log.d("NavigationGraph ====== ", navController.graph.toString())
         HomeRouter(navController = navController)
     }
 }
@@ -57,13 +59,18 @@ fun HomeRouter(navController: NavController, homeViewModel: HomeViewModel = hilt
     )
     val oneTimeEvent = homeViewModel.oneTimeEvents.collectAsState(initial = null)
     LaunchedEffect(oneTimeEvent.value) {
-        when (oneTimeEvent.value) {
-            is HomeOneTimeEvent.NavigateToDetails -> navController.navigate(DetailsScreen)
+        when (val event = oneTimeEvent.value) {
+            is HomeOneTimeEvent.NavigateToDetails -> {
+                val route = DetailsScreen(appItem = event.item)
+                Log.d("route ====== ", route.toString())
+                navController.navigate(route)
+            }
+
+
             null -> Unit
         }
     }
 }
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -120,7 +127,7 @@ fun HomeScreenPreview() {
             "App Icon",
             "App graphic",
             "version name",
-            0L,
+            0,
             "update"
         ),
         AppItem(
@@ -130,7 +137,7 @@ fun HomeScreenPreview() {
             "App Icon",
             "App graphic",
             "version name",
-            0L,
+            0,
             "update"
         ),
         AppItem(
@@ -140,7 +147,7 @@ fun HomeScreenPreview() {
             "App Icon",
             "App graphic",
             "version name",
-            0L,
+            0,
             "update"
         )
     )

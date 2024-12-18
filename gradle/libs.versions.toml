@@ -97,4 +97,6 @@ kotlin-ksp = { id = "com.google.devtools.ksp" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-ksp-devtools = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
+parcelize = { id = "kotlin-parcelize" }
+
 

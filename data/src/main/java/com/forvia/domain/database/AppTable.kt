@@ -11,23 +11,23 @@ data class AppTable(
     val id: Long,
 
     @ColumnInfo(name = "name")
-    val name: String? = null,
+    val name: String,
 
     @ColumnInfo(name = "packageName")
-    val packageName: String? = null,
+    val packageName: String,
 
     @ColumnInfo(name = "appIcon")
-    val appIcon: String? = null,
+    val appIcon: String?,
 
     @ColumnInfo(name = "appGraphic")
-    val appGraphic: String? = null,
+    val appGraphic: String?,
 
     @ColumnInfo(name = "versionName")
-    val versionName: String? = null,
+    val versionName: String,
 
     @ColumnInfo(name = "downloads")
-    val downloads: Long,
+    val downloads: Int,
 
     @ColumnInfo(name = "updated")
-    val updated: String? = null
+    val updated: String
 )
