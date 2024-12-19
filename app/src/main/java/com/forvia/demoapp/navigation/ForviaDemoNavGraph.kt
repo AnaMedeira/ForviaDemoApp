@@ -11,12 +11,8 @@ import com.forvia.demoapp.presentation.home.homeScreen
 fun ForviaDemoNavGraph(navController: NavHostController) {
 
     NavHost(navController = navController, startDestination = HomeScreen) {
-
-        //Home screen
         homeScreen(navController = navController)
 
-        //Details Screen
         detailsScreen(navController = navController)
-
     }
 }

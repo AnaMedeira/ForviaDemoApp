@@ -44,11 +44,6 @@ android {
 
 dependencies {
 
-    //Fora
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-
     // Network
     implementation(libs.serialization)
     implementation(libs.retrofit)

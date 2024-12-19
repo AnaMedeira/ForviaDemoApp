@@ -1,4 +1,4 @@
-package com.forvia.demoapp.navigation
+package com.forvia.demoapp.navigation.navtypes
 
 import android.net.Uri
 import android.os.Build

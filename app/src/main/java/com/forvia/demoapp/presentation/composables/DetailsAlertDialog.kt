@@ -9,18 +9,16 @@ import com.forvia.demoapp.R
 
 
 @Composable
-fun DetailsAlertDialog(showDialog: Boolean, onDismiss: () -> Unit) {
-    if (showDialog) {
-        AlertDialog(
-            onDismissRequest = { onDismiss() },
-            title = { Text(stringResource(R.string.downloads_dialog_error_title)) },
-            text = { Text(stringResource(R.string.downloads_dialog_error_body)) },
-            confirmButton = {
-                TextButton(onClick = { onDismiss() }) {
-                    Text(stringResource(R.string.downloads_dialog_error_btn))
-                }
-            },
+fun DetailsAlertDialog(onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = { onDismiss() },
+        title = { Text(stringResource(R.string.downloads_dialog_error_title)) },
+        text = { Text(stringResource(R.string.downloads_dialog_error_body)) },
+        confirmButton = {
+            TextButton(onClick = { onDismiss() }) {
+                Text(stringResource(R.string.downloads_dialog_error_btn))
+            }
+        },
 
-            )
-    }
+        )
 }

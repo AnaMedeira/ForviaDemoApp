@@ -16,21 +16,11 @@ import com.forvia.demoapp.presentation.notification.NotificationHelper
 import com.forvia.demoapp.presentation.notification.NotificationWorker
 import com.forvia.demoapp.ui.theme.ForviaDemoAppTheme
 import com.forvia.demoapp.util.Constants
-import com.forvia.domain.useCase.GetLocalAppsUseCase
-import com.forvia.domain.useCase.SaveLocalAppsUseCase
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-
-    @Inject
-    lateinit var getLocalAppsUseCase: GetLocalAppsUseCase
-
-    @Inject
-    lateinit var saveLocalAppsUseCase: SaveLocalAppsUseCase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

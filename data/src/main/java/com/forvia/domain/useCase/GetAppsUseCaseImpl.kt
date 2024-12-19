@@ -13,6 +13,9 @@ class GetAppsUseCaseImpl(
 ) : GetAppsUseCase {
     override suspend fun invoke(): List<AppItem> {
         return withContext(Dispatchers.IO) {
+            //There is another way of checking if there is internet,
+            // if we make the call and it fails then there no internet.
+            //this if can be redundant but it check all internet possibilities in the device
             if (networkUtils.isInternetAvailable()) {
                 try {
                     // Fetch data from API

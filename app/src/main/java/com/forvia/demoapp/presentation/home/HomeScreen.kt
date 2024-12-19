@@ -55,6 +55,7 @@ fun HomeRouter(navController: NavController, homeViewModel: HomeViewModel = hilt
         appItems = uiState.appList,
         onEvent = { homeViewModel.dispatch(it) }
     )
+
     val oneTimeEvent = homeViewModel.oneTimeEvents.collectAsState(initial = null)
     LaunchedEffect(oneTimeEvent.value) {
         when (val event = oneTimeEvent.value) {

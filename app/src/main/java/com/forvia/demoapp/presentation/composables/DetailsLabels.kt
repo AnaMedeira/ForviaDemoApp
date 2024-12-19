@@ -3,6 +3,7 @@ package com.forvia.demoapp.presentation.composables
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,9 +23,10 @@ fun DetailsLabels(
     text: String,
     modifier: Modifier = Modifier,
 ) {
+    Spacer(modifier = Modifier.height(8.dp))
     // Title and subtitle
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {

@@ -20,10 +20,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -38,10 +37,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import coil.compose.rememberAsyncImagePainter
 import com.forvia.demoapp.R
-import com.forvia.demoapp.navigation.AppItemNavType
+import com.forvia.demoapp.navigation.navtypes.AppItemNavType
 import com.forvia.demoapp.presentation.composables.DetailsAlertDialog
 import com.forvia.demoapp.presentation.composables.DetailsLabels
 import com.forvia.demoapp.presentation.composables.PrimaryButton
+import com.forvia.demoapp.presentation.details.models.DetailsOneTimeEvent
+import com.forvia.demoapp.presentation.details.models.DetailsUIEvent
+import com.forvia.demoapp.presentation.details.models.DetailsUiState
 import com.forvia.demoapp.ui.theme.ForviaDemoAppTheme
 import com.forvia.demoapp.util.MultiDevicePreview
 import com.forvia.domain.model.AppItem
@@ -52,13 +54,14 @@ import kotlin.reflect.typeOf
 data class DetailsScreen(val appItem: AppItem) //This argument is always very small, otherwise I would pass the id and then get the element from DB
 
 
-private val appItemNavType = AppItemNavType()
+private val AppItemNavType = AppItemNavType()
 
 fun NavGraphBuilder.detailsScreen(navController: NavController) {
     composable<DetailsScreen>(
-        typeMap = mapOf(typeOf<AppItem>() to appItemNavType)
+        typeMap = mapOf(typeOf<AppItem>() to AppItemNavType)
     ) {
         val args = it.toRoute<DetailsScreen>()
+
         DetailsScreenRoute(
             onBackClick = { navController.navigateUp() },
             appItem = args.appItem
@@ -72,17 +75,32 @@ fun DetailsScreenRoute(
     appItem: AppItem,
     detailsScreenViewModel: DetailsViewModel = hiltViewModel()
 ) {
-    DetailsScreen(appItem, onBackClick)
+    val uiState by detailsScreenViewModel.uiStateFlow.collectAsState()
+
+    DetailsScreen(
+        uiState = uiState,
+        appItem = appItem,
+        onEvent = { detailsScreenViewModel.dispatch(it) })
+
+    val oneTimeEvent = detailsScreenViewModel.oneTimeEvents.collectAsState(initial = null)
+
+    LaunchedEffect(oneTimeEvent.value) {
+        when (oneTimeEvent.value) {
+            DetailsOneTimeEvent.NavigateBack -> onBackClick.invoke()
+            null -> Unit
+        }
+    }
+
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailsScreen(
+    uiState: DetailsUiState,
     appItem: AppItem,
-    onBackClick: () -> Unit
+    onEvent: (DetailsUIEvent) -> Unit,
 ) {
 
-    var showDialog by remember { mutableStateOf(false) }
     Scaffold(
         containerColor = MaterialTheme.colorScheme.onSecondary,
 
@@ -91,7 +109,7 @@ fun DetailsScreen(
                 title = { Text(appItem.name) },
                 navigationIcon = {
                     IconButton(
-                        onClick = onBackClick,
+                        onClick = { onEvent(DetailsUIEvent.NavigateBack) },
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
@@ -146,16 +164,22 @@ fun DetailsScreen(
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
-                        Spacer(modifier = Modifier.height(8.dp))
+
                         DetailsLabels(
                             stringResource(R.string.package_name_label),
                             appItem.packageName
                         )
-                        Spacer(modifier = Modifier.height(8.dp))
-                        DetailsLabels(stringResource(R.string.version_label), appItem.versionName)
-                        Spacer(modifier = Modifier.height(8.dp))
-                        DetailsLabels(stringResource(R.string.last_update_label), appItem.updated)
-                        Spacer(modifier = Modifier.height(8.dp))
+
+                        DetailsLabels(
+                            stringResource(R.string.version_label),
+                            appItem.versionName
+                        )
+
+                        DetailsLabels(
+                            stringResource(R.string.last_update_label),
+                            appItem.updated
+                        )
+
                         DetailsLabels(
                             stringResource(R.string.downloads_label),
                             appItem.downloads.toString()
@@ -167,15 +191,13 @@ fun DetailsScreen(
                 PrimaryButton(
                     text = stringResource(R.string.download),
                     isEnabled = true,
-                    onClick = {
-                        //implement
-                        showDialog = true
-                    }
+                    onClick = { onEvent(DetailsUIEvent.ShowDialog) }
                 )
 
-                DetailsAlertDialog(showDialog = showDialog, onDismiss = { showDialog = false })
+                if (uiState.showDialog) {
+                    DetailsAlertDialog(onDismiss = { onEvent(DetailsUIEvent.DismissDialog) })
+                }
             }
-
         }
     }
 }
@@ -196,7 +218,7 @@ fun HomeScreenPreview() {
     )
 
     ForviaDemoAppTheme {
-        DetailsScreen(testItem, {})
+        DetailsScreen(uiState = DetailsUiState(false), testItem, {})
     }
 
 
