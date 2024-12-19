@@ -6,16 +6,21 @@ ForviaDemoApp list of Applications from Apptoide, send notification with updates
 
 ## Screenshots and features
 
-<img src="./images/homeScreen.png" width=256/> <img src="./images/detailsScreen.png" width=256/> <img src="./images/detailsScreenAlert.png" width=256/> <img src="./images/notification.png" width=256/>
+<img src="./images/homeScreen.png" width=128/> <img src="./images/detailsScreen.png" width=128/> <img src="./images/detailsScreenAlert.png" width=128/> <img src="./images/notification.png" width=128/>
 
 
 
 ## Project architecture
 This project draws heavy inspiration from Uncle Bob's clean architecture. It aims to separate business rules from implementation details such as network access, database operations and the user interface towards easier development and maintenance.
 
-The project is split into multiple Gradle modules:
+<img src="./images/diagrama.png" width=512/>
+The project is split into 2 Gradle modules:
 
-- **domain** Kotlin library that defines the app's purpose (business rules). The App fetch the list of Applications and saves them to some form of history for later access. This module embodies the domain and entities layers. Originally, there was a separate *entities* module, but it only contained a single data class with no business rules of its own, so I removed it to keep things simple.
+- **data** Kotlin library that defines the app's purpose (business rules). The App fetch the list of
+  Applications and saves them to some form of history for later access. This module embodies the
+  domain and entities layers. Originally, there was a separate *entities* module, but it only
+  contained a single data class with no business rules of its own, so I removed it to keep things
+  simple.
 
 - **app** Android app module 
 
@@ -32,3 +37,4 @@ The project uses the following Android mechanisms and libraries:
 - Retrofit, OkHttp, Gson
 - Room Database
 - Clean Architecture
+- CoroutinesWorker
