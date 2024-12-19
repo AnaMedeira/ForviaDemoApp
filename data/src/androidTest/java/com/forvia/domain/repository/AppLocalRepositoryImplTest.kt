@@ -43,7 +43,7 @@ class AppLocalRepositoryImplTest {
             "App Icon 1",
             "App graphic 1",
             "version name 1",
-            0L,
+            0,
             "update 1"
         )
         repository.saveApps(row)

@@ -11,7 +11,7 @@ class GetAppsUseCaseImpl(
     private val localAppsUseCase: GetLocalAppsUseCase,
     private val saveLocalAppsUseCase: SaveLocalAppsUseCase
 ) : GetAppsUseCase {
-    override suspend fun getApps(): List<AppItem> {
+    override suspend fun invoke(): List<AppItem> {
         return withContext(Dispatchers.IO) {
             if (networkUtils.isInternetAvailable()) {
                 try {
@@ -29,9 +29,5 @@ class GetAppsUseCaseImpl(
                 localAppsUseCase.invoke()
             }
         }
-    }
-
-    override suspend fun getNewApps(): Int {
-        TODO("Not yet implemented")
     }
 }

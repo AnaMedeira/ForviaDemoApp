@@ -30,7 +30,7 @@ class HomeScreenKtTest {
             "App Icon",
             "App graphic",
             "version name",
-            0L,
+            0,
             "update"
         ),
         AppItem(
@@ -40,7 +40,7 @@ class HomeScreenKtTest {
             "App Icon",
             "App graphic",
             "version name",
-            0L,
+            0,
             "update"
         ),
         AppItem(
@@ -50,7 +50,7 @@ class HomeScreenKtTest {
             "App Icon",
             "App graphic",
             "version name",
-            0L,
+            0,
             "update"
         )
     )
@@ -66,12 +66,12 @@ class HomeScreenKtTest {
         }
 
         // Assert: Check that title and subtitle are displayed
-        composeTestRule.onNodeWithText(testAppItem.name!!).assertIsDisplayed()
-        composeTestRule.onNodeWithText(testAppItem.packageName!!).assertIsDisplayed()
+        composeTestRule.onNodeWithText(testAppItem.name).assertIsDisplayed()
+        composeTestRule.onNodeWithText(testAppItem.packageName).assertIsDisplayed()
 
         // Assert: Image node is displayed (Coil will not load an actual image during tests)
         composeTestRule.onNode(
-            hasContentDescription(testAppItem.name!!)
+            hasContentDescription(testAppItem.name)
         ).assertIsDisplayed()
     }
 
@@ -85,7 +85,7 @@ class HomeScreenKtTest {
 
         // Assert: Check that all titles are displayed
         testCardItems.forEach { cardItem ->
-            composeTestRule.onNodeWithText(cardItem.name!!).assertIsDisplayed()
+            composeTestRule.onNodeWithText(cardItem.name).assertIsDisplayed()
         }
 
         // Assert: Check the total number of items displayed

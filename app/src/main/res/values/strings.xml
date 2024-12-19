@@ -9,5 +9,8 @@
     <string name="downloads_dialog_error_title">Be aware&#8230;</string>
     <string name="downloads_dialog_error_body">Download functionality is not available in demo mode!!</string>
     <string name="downloads_dialog_error_btn">Close</string>
+    <string name="notification_title">New Apps Available</string>
+    <string name="notification_message">Check out the latest apps now!</string>
+
 
 </resources>

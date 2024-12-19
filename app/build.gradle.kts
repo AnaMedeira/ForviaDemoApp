@@ -64,6 +64,7 @@ dependencies {
     //Navigation
     implementation(libs.navigation.compose)
     implementation(project(":data"))
+    implementation(libs.androidx.hilt.common)
     //Dependency injection dagger - hilt
     ksp(libs.dagger.hilt.compiler)
     implementation(libs.navigation.hilt)
@@ -72,6 +73,10 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     //Coil
     implementation(libs.coil)
+    //workManager for notifications
+    implementation(libs.androidx.work)
+    implementation(libs.dagger.hilt.worker)
+    ksp(libs.dagger.hilt.worker.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

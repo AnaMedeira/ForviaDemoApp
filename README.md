@@ -6,6 +6,8 @@ ForviaDemoApp list of Applications from Apptoide, send notification with updates
 
 ## Screenshots and features
 
+<img src="./images/homeScreen.png" width=256/> <img src="./images/detailsScreen.png" width=256/> <img src="./images/detailsScreenAlert.png" width=256/> <img src="./images/notification.png" width=256/>
+
 
 
 ## Project architecture

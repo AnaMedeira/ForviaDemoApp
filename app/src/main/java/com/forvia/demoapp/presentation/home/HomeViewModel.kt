@@ -30,7 +30,7 @@ class HomeViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            _uiStateFlow.value = HomeUiState(appList = getAppsUseCase.getApps())
+            _uiStateFlow.value = HomeUiState(appList = getAppsUseCase.invoke())
         }
     }
 
