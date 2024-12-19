@@ -13,6 +13,7 @@ ForviaDemoApp list of Applications from Apptoide, send notification with updates
 - Save the app list on a room database so it can work even if its not connected to internet
 - Send notification every 30 min warning the user of new applications
 - Works in darkmode and lightmode
+- Unit test, instrumentation Test for Room DB and for HomeScreen
 
 
 ## Project architecture
@@ -55,6 +56,7 @@ There is still lot of room to improvements, here is some That I've thought but c
 - Open the app when the notification is clicked
 - Just send the notification (every 30 min) if the delta between the list of app in the DB and the
   list of Apps fetch from the api is grater than 0.
+- Flow tests
 - Separate the module of remote and local into 2 (this project was too small for it)
 
 
