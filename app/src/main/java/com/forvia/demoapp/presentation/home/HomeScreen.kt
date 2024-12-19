@@ -28,6 +28,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.forvia.demoapp.R
 import com.forvia.demoapp.presentation.composables.CardItemView
+import com.forvia.demoapp.presentation.composables.LoadingState
 import com.forvia.demoapp.presentation.details.DetailsScreen
 import com.forvia.demoapp.presentation.home.models.HomeOneTimeEvent
 import com.forvia.demoapp.presentation.home.models.HomeUIEvent
@@ -52,6 +53,7 @@ fun HomeRouter(navController: NavController, homeViewModel: HomeViewModel = hilt
     val uiState by homeViewModel.uiStateFlow.collectAsState()
 
     HomeScreen(
+        isLoading = uiState.isLoading,
         appItems = uiState.appList,
         onEvent = { homeViewModel.dispatch(it) }
     )
@@ -63,6 +65,7 @@ fun HomeRouter(navController: NavController, homeViewModel: HomeViewModel = hilt
                 val route = DetailsScreen(appItem = event.item)
                 navController.navigate(route)
             }
+
             null -> Unit
         }
     }
@@ -71,6 +74,7 @@ fun HomeRouter(navController: NavController, homeViewModel: HomeViewModel = hilt
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
+    isLoading: Boolean,
     appItems: List<AppItem>,
     onEvent: (HomeUIEvent) -> Unit
 ) {
@@ -94,21 +98,25 @@ fun HomeScreen(
             )
         },
     ) { paddingValues ->
-        val state = rememberLazyStaggeredGridState()
-        LazyVerticalStaggeredGrid(
-            columns = StaggeredGridCells.Fixed(2),
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues),
-            state = state,
-            horizontalArrangement = Arrangement.spacedBy(10.dp),
-            content = {
-                items(appItems) { appItem ->
-                    CardItemView(appItem = appItem,
-                        onItemClick = { onEvent(HomeUIEvent.SelectApp(appItem)) })
+        if (isLoading) {
+            LoadingState()
+        } else {
+            val state = rememberLazyStaggeredGridState()
+            LazyVerticalStaggeredGrid(
+                columns = StaggeredGridCells.Fixed(2),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
+                state = state,
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+                content = {
+                    items(appItems) { appItem ->
+                        CardItemView(appItem = appItem,
+                            onItemClick = { onEvent(HomeUIEvent.SelectApp(appItem)) })
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 }
 
@@ -148,7 +156,7 @@ fun HomeScreenPreview() {
         )
     )
     ForviaDemoAppTheme {
-        HomeScreen(testCardItems, {})
+        HomeScreen(false, testCardItems, {})
     }
 
 

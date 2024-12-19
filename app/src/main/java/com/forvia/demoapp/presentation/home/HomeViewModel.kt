@@ -21,7 +21,7 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    private val _uiStateFlow = MutableStateFlow(HomeUiState())
+    private val _uiStateFlow = MutableStateFlow(HomeUiState(true))
     val uiStateFlow: StateFlow<HomeUiState> = _uiStateFlow.asStateFlow()
 
     private val _oneTimeEventChannel = Channel<HomeOneTimeEvent>()
@@ -30,7 +30,7 @@ class HomeViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            _uiStateFlow.value = HomeUiState(appList = getAppsUseCase.invoke())
+            _uiStateFlow.value = HomeUiState(false, appList = getAppsUseCase.invoke())
         }
     }
 

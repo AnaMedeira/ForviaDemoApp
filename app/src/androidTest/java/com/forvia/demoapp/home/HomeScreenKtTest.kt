@@ -79,7 +79,7 @@ class HomeScreenKtTest {
     fun homescreen_displaysAllItems() {
         // Arrange: Render the list screen with test data
         composeTestRule.setContent {
-            HomeScreen(appItems = testCardItems, {})
+            HomeScreen(false, appItems = testCardItems, {})
 
         }
 
